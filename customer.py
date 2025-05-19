@@ -1,5 +1,3 @@
-from order import Order
-
 class Customer:
     _all = []
 
@@ -24,16 +22,20 @@ class Customer:
         self._name = value
 
     def orders(self):
+        from order import Order
         return [order for order in Order._all if order.customer == self]
 
     def coffees(self):
+        from order import Order
         return list(set(order.coffee for order in self.orders()))
 
     def create_order(self, coffee, price):
+        from order import Order
         return Order(self, coffee, price)
 
     @classmethod
     def most_aficionado(cls, coffee):
+        from order import Order
         if not coffee.orders():
             return None
         customer_spending = {}
